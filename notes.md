@@ -18,21 +18,22 @@
 ## Coding
 
 - code is openly shared on github
-- what code (and text) do I have?
-  - thesis, journal articles: latex, gnuplot
-  - test suite: AtmosTests
-  - OpenFOAM extension code: AtmosFOAM, AtmosFOAM-tools, highOrderFit
-  - third party mesh generators: gmd-geodesic-mesh, HRgrids, asam\_grid, gmv2openfoam
+- what code do we have?
+  - test suite: OpenFOAM configuration files and a ninja build system
+  - our own applications and libraries that link against OpenFOAM
+  - third party, open source code for generating meshes
+  - I also have LaTeX documents, postprocessing and plotting routines, all depending on simulation results
 - pushing to github triggers a Travis CI build that
   - downloads the latest version of OpenFOAM
-  - compiles our OpenFOAM extension code, "AtmosFOAM"
+  - compiles our code
   - runs automated tests (not nearly enough of them!)
   - creates a binary Debian package and deploys to a Debian APT repository hosted on AWS S3
 
 ## Modelling
 
-- AtmosTests: a suite of idealised atmospheric simulations
-- singularity image contains OpenFOAM, AtmosFOAM, mesh generators etc
+- we have a suite of idealised atmospheric simulations
+- I run it on AWS EC2 using singularity containers
+- singularity image contains OpenFOAM, our OpenFOAM extensions, mesh generators etc
 - AWS EC2 instances are ubuntu+singularity, nothing more
 - AWS EC2 instances manually created, manually started
 - one or more simulations are run with ninja:
